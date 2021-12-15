@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'sitewards.wsgi.application'
 cloudinary.config( 
   cloud_name = "dante6996-arch", 
   api_key = "264718389151771", 
-  api_secret = "apDCTL0vIVZ3-UXadEdcXVXrcQQ" 
+  api_secret = "apDCTL0vIVZ3-UXadEdcXVXrcQQ", 
 )
 
 
@@ -89,7 +89,7 @@ cloudinary.config(
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'awards',
         'USER': 'moringa',
         'PASSWORD': 'Access',
