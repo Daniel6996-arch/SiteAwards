@@ -8,4 +8,5 @@ urlpatterns = [
     url('^$', views.index, name  = 'index'),
     url('site_of_day/', WebsiteListView.as_view(), name='site_of_day'),
     url('^profile/(?P<pk>\d+)/$', ProfileView.as_view(), name = 'profile'),
+    url('^profile/edit/(?P<pk>\d+)/$', ProfileEditView.as_view(), name = 'profile-edit'),
 ]    
