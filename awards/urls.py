@@ -7,5 +7,5 @@ from .views import WebsiteListView, ProfileView, ProfileEditView
 urlpatterns = [
     url('^$', views.index, name  = 'index'),
     url('site_of_day/', WebsiteListView.as_view(), name='site_of_day'),
-    path('^profile/<int:pk>/', ProfileView.as_view(), name = 'profile'),
+    url('^profile/(?P<pk>\d+)/$', ProfileView.as_view(), name = 'profile'),
 ]    
