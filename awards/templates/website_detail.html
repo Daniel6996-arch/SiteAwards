@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+<div class="container">
+    <div>
+        <a href="{% url 'site_of_day' %}" class="btn btn-light">Back</a>
+    </div>
+    <div class="border p-2">
+        <img id="size" src="{{ website.landing_page.url }}"> 
+        <p class="fs-5"><span class="fst-italic text-warning fs-4">Name of Site: </span>{{ website.title }}</p>
+        <p class="fs-5"><span class="fst-italic text-warning fs-4">Description: </span> {{ website.description }}</p>
+        <p class="fs-5"><span class="fst-italic text-warning fs-4">Created by </span><a class="text-primary" style="text-decoration: none;" href="">@{{ website.author }}</a><span class="fst-italic text-warning">on</span> {{ website.uploaded_on }}</p>
+    
+    </div>
+
+
+    <div class="">
+        <h3 class="text-center">Comments {{ website.comments.count.all }}</h3>
+        {% for comment in comments %}
+
+        <div class="border p-2">
+            <p><a class="text-primary" style="text-decoration: none;" href="{% url 'profile' website.author.profile.pk %}">@{{ comment.author }}</a></p>
+            <p><span class="fst-italic text-muted">On: </span>{{ comment.created_on }}</p>
+            <p><span class="fst-italic text-muted">Said: </span>{{ comment.comment }}</p>
+        </div>
+
+        {% endfor %}
+    </div>
+
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+
+            {% bootstrap_form form %}
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-sm" value="Submit">
+            </div> 
+        </form>
+    </div>
+   
+</div>
+
+{% endblock %}

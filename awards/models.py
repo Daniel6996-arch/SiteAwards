@@ -34,4 +34,11 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User) 
 def save_user_Profile(sender, instance, **kwargs):
-    instance.profile.save()     
+    instance.profile.save()   
+
+
+class Comment(models.Model): 
+    comment = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete = models.CASCADE)
+    website = models.ForeignKey(Website, on_delete = models.CASCADE)        
