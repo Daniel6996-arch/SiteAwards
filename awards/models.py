@@ -18,7 +18,7 @@ class Website(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, primary_key = True, verbose_name = 'user', related_name = 'profile', on_delete = models.CASCADE)
     full_name = models.CharField(max_length=30)
-    bio = HTMLField(blank=True, null=True)
+    bio = models.TextField(blank=True, null=True)
     profile_pic = CloudinaryField('image')
     followers = models.ManyToManyField(User, blank = True, related_name = 'followers')
 
