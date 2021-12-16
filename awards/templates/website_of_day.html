@@ -4,32 +4,38 @@
 {% block content %}
 
 <div class="container-fluid">
-    <div>
+    <div class="pb-5">
         <div>
-            <h2>Site of the day</h2>
-            <div class="text-center">
-                <h1>{{ site_of_day.title }}</h1>
-                <p class="fw-bold"><span class="text-info">by </span>{{ site_of_day.author }}<span class="text-info"> from </span>{{ site_of_day.country }}</p>
-                <p>{{ site_of_day.description }}</p>
+            <div>
+                <h2>Site of the day</h2>
+                <div class="text-center">
+                    <h1>{{ site_of_day.title }}</h1>
+                    <p class="fw-bold"><span class="text-info">by </span>{{ site_of_day.author }}<span class="text-info"> from </span>{{ site_of_day.country }}</p>
+                    <p>{{ site_of_day.description }}</p>
+                </div>
             </div>
+                <h3 class="text-center p-2">Rating and Review</h3>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-info m-2" style="height: 100px; width: 100px; border-radius: 50%;">x</button>
+                    <button type="button" class="btn btn-info m-2" style="height: 100px; width: 100px; border-radius: 50%;">y</button>
+                    <button type="button" class="btn btn-info m-2" style="height: 100px; width: 100px; border-radius: 50%;">z</button>
+                </div>
         </div>
-            <div class="d-flex justify-content-center">
-                <h3>Rating and Review</h3>
-                <button type="button" class="btn btn-info" style="height: 100px; width: 100px; border-radius: 50%;">x</button>
-                <button type="button" class="btn btn-info" style="height: 100px; width: 100px; border-radius: 50%;">y</button>
-                <button type="button" class="btn btn-info" style="height: 100px; width: 100px; border-radius: 50%;">z</button>
-            </div>
-    </div>
-    <div>
-        <button class="btn btn-outline-primary m-2">Visit Site</button>
+        <div>
+            <button class="btn btn-outline-primary m-2">Visit Site</button>
+        </div>
     </div>
     <div class="d-flex flex-row">
         {% for site in site_list %}
-        
-        <div>
-        <a class="" href="{% url 'website-detail' site.pk %}">{{ site.title }}</a>
-        <p>{{ site.author }}</p>
-        <p>{{ site.description }}</p>
+        <div class="m-2">
+            <div>
+                <img id="size" src="{{ site.landing_page.url }}">
+            </div>    
+            <div>
+                <a class="" href="{% url 'website-detail' site.pk %}">{{ site.title }}</a>
+                <p>{{ site.author }}</p>
+                <p>{{ site.description }}</p>
+            </div>
         </div>
 
         {% endfor %}
