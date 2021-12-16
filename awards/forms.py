@@ -7,3 +7,16 @@ class SiteForm(forms.ModelForm):
     class Meta:
         model = Website
         exclude = ['author', 'uploaded_on']
+
+class CommentForm(forms.ModelForm):
+    comment = forms.CharField(
+        label = '',
+        widget = forms.Textarea(attrs={
+            'rows': '3',
+            'placeholder':'Comment Something...'
+        })   
+    )
+
+    class Meta:
+        model = Comment
+        fields = ['comment']        
