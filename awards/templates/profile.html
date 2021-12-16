@@ -4,9 +4,6 @@
 {% block content %}
 
 <div class="container">
-    <div>
-        <a href="{% url 'site_of_day' %}" class="btn-light">Back</a>
-    </div>
 
     <div>
         <div class="card shadow-sm border-bottom px-5 pt-3 d-flex flex-row">
@@ -38,22 +35,9 @@
     {% for site in websites %}
 
 <div class="border p-2">
-    <a href="{% url 'website_detail' site.pk %}"><img id="size" src="{{ website.landing_page.url }}"></a>   
-    <p><a class="text-primary" style="text-decoration: none;" href="">@{{ website.author }}</a> on {{ website.uploaded_on }}</p>
+    <a href="{% url 'website-detail' site.pk %}"><img id="size" src="{{ site.landing_page.url }}"></a>   
+    <p><a class="text-primary" style="text-decoration: none;" href="">@{{ website.author }}</a> on {{ site.uploaded_on }}</p>
 
-    <!--<div class="d-flex flex-row">
-        <form method="POST" action="{% url 'like' image.pk %}">
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ request.path }}">
-            <button style="background-color: transparent; border: none;" type="submit"><i class="fas fa-thumbs-up"></i><span class="btn btn-light text-primary">{{ image.likes.all.count }}</span></button>
-        </form>
-
-        <form method="POST" action="{% url 'dislike' image.pk %}">
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ request.path }}">
-            <button style="background-color: transparent; border: none;" type="submit"><i class="fas fa-thumbs-down"></i><span class="btn btn-light text-primary">{{ image.dislikes.all.count }}</span></button>
-        </form>
-    </div>-->
 </div>
     
     {% endfor %}

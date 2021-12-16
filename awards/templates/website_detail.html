@@ -4,9 +4,6 @@
 {% block content %}
 
 <div class="container">
-    <div>
-        <a href="{% url 'site_of_day' %}" class="btn btn-light">Back</a>
-    </div>
     <div class="border p-2">
         <img id="size" src="{{ website.landing_page.url }}"> 
         <p class="fs-5"><span class="fst-italic text-warning fs-4">Name of Site: </span>{{ website.title }}</p>

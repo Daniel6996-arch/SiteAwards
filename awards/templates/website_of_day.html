@@ -29,7 +29,7 @@
         {% for site in site_list %}
         <div class="m-2">
             <div>
-                <img id="size" src="{{ site.landing_page.url }}">
+                <a class="" href="{% url 'website-detail' site.pk %}"><img id="size" src="{{ site.landing_page.url }}"></a>
             </div>    
             <div>
                 <a class="" href="{% url 'website-detail' site.pk %}">{{ site.title }}</a>
