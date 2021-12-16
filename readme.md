@@ -1,17 +1,17 @@
-# Instagrammer
+# SiteAwards
 
 ## Description  
-#### {This is an application of Instagrammer which allows a user to post an image and also to comment on other images by other users} {04/12/2021}
+#### {This is an application of SiteAwards which allows a user to post a site for reviews and ratings and also to rate, review and comment on other sites by other users} {14/12/2021}
 #### Authored By **{Daniel6996-arch}**
 ## Behavior-Driven Development
 ###As a User I should:     
 *Sign in to the application to start using.   
-*Upload my pictures to the application.   
-*See my profile with all my pictures.   
-*Follow other users and see their pictures on my timeline.   
-*Like a picture and leave a comment on it.   
+*Upload my website to the application.   
+*See my profile with all my websites.   
+*Rate, review and comment on other sites.    
+*Like a site and leave a comment on it.   
 ## link
-https://danteinstagrammer.herokuapp.com/
+https://dantesiteawards.herokuapp.com/
 ## Setup/Installation Requirements
 *This website best works on latest version browsers that support python.   
 *Older browsers my work ineffectively.   
