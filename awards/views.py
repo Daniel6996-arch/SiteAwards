@@ -41,4 +41,30 @@ class WebsiteListView(View):
             'form':form,
         }
 
-        return render(request, 'website_of_day.html', context)       
+        return render(request, 'website_of_day.html', context)  
+
+class ProfileView(View):
+    def get(self, request, pk):
+        profile = UserProfile.objects.get(pk=pk)
+        user = profile.user
+        websites = Website.objects.filter(author = user).order_by('-uploaded_on')   
+
+        context = {
+            'user':user,
+            'profile':profile,
+            'websites':websites,
+        }        
+
+        return render(request, 'profile.html', context)     
+
+class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = UserProfile
+    fields = ['full_name', 'bio', 'profile_pic']
+    template_name = 'profile_edit.html'
+
+    def get_success_url(self):
+        pk = self.kwargs['pk']
+        return reverse_lazy('profile', kwargs={'pk':pk})
+
+    def test_func(self):
+        profile = self.get_object()               
