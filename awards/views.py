@@ -108,3 +108,15 @@ class WebsiteDetailView(View):
         }
 
         return render(request, 'website_detail.html', context)
+
+def search(request):
+
+    if 'user' in request.GET and request.GET["user"]:
+        search_term = request.GET.get("user")
+        searched_users = UserProfile.search_user(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html', {"message":message,"users":searched_users})
+
+    else:
+        return render(request, 'search.html', {"message":message})     

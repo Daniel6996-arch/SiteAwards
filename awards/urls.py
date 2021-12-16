@@ -10,4 +10,5 @@ urlpatterns = [
     url('^profile/(?P<pk>\d+)/$', ProfileView.as_view(), name = 'profile'),
     url('^profile/edit/(?P<pk>\d+)/$', ProfileEditView.as_view(), name = 'profile-edit'),
     url('^post/(?P<pk>\d+)/$', WebsiteDetailView.as_view(), name = 'website-detail'),
+    url('^search/',views.search,name='search'),
 ]    
