@@ -70,3 +70,41 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         profile = self.get_object()               
+
+class WebsiteDetailView(View):
+    def get(self, request, pk,  *args, **kwargs):
+        #pk = self.kwargs.get('pk')
+        website = Website.objects.get(pk=pk)
+        form = CommentForm() 
+
+        comments = Comment.objects.filter(website = website).order_by('-created_on')
+
+        template_name = 'website_detail.html'
+
+        context = {
+            'website':website,
+            'form':form,
+            'comments':comments,
+        }
+
+        return render(request, 'website_detail.html', context)
+
+    def post(self, request, pk, *args, **kwargs):
+        website = Website.objects.get(pk=pk)
+        form = CommentForm(request.POST) 
+ 
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.author = request.user
+            new_comment.website = website
+            new_comment.save()
+
+        comments = Comment.objects.filter(website = website).order_by('-created_on')    
+
+        context = {
+            'website':website,
+            'form':form,
+            'comments':comments,
+        }
+
+        return render(request, 'website_detail.html', context)
