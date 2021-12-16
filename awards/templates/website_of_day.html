@@ -13,10 +13,12 @@
                 <p>{{ site_of_day.description }}</p>
             </div>
         </div>
-        <h3>Rating and Review</h3>
-        <button type="button" class="btn btn-info" style="height: 100px; width: 100px; border-radius: 50%;">x</button>
-        <button type="button" class="btn btn-info" style="height: 100px; width: 100px; border-radius: 50%;">y</button>
-        <button type="button" class="btn btn-info" style="height: 100px; width: 100px; border-radius: 50%;">z</button>
+            <div class="d-flex justify-content-center">
+                <h3>Rating and Review</h3>
+                <button type="button" class="btn btn-info" style="height: 100px; width: 100px; border-radius: 50%;">x</button>
+                <button type="button" class="btn btn-info" style="height: 100px; width: 100px; border-radius: 50%;">y</button>
+                <button type="button" class="btn btn-info" style="height: 100px; width: 100px; border-radius: 50%;">z</button>
+            </div>
     </div>
     <div>
         <button class="btn btn-outline-primary m-2">Visit Site</button>
@@ -25,7 +27,7 @@
         {% for site in site_list %}
         
         <div>
-        <a class="" href="{% url 'website-detail' website.pk %}">{{ site.title }}</a>
+        <a class="" href="{% url 'website-detail' site.pk %}">{{ site.title }}</a>
         <p>{{ site.author }}</p>
         <p>{{ site.description }}</p>
         </div>

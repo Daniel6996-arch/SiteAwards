@@ -1,5 +1,5 @@
 from django import forms
-from .models import Website
+from .models import Website, Comment
 
 class SiteForm(forms.ModelForm):
     #image = forms.FileField(label='Upload Landing page image') 
