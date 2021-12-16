@@ -9,5 +9,5 @@ class Website(models.Model):
     title = models.CharField(max_length = 120)
     description = models.TextField()
     country = models.CharField(max_length = 120)
-    landing_page = CloudinaryField('image')
+    landing_page = CloudinaryField('Landing page image')
     uploaded_on = models.DateTimeField(auto_now_add=True)
