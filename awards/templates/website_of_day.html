@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div>
+        <div>
+            <h2>Site of the day</h2>
+            <div class="text-center">
+                <h1>{{ site_of_day.title }}</h1>
+                <p class="fw-bold"><span class="text-info">by </span>{{ site_of_day.author }}<span class="text-info"> from </span>{{ site_of_day.country }}</p>
+                <p>{{ site_of_day.description }}</p>
+            </div>
+        </div>
+        <h3>Rating and Review</h3>
+        <button type="button" class="btn btn-info" style="height: 100px; width: 100px; border-radius: 50%;">x</button>
+        <button type="button" class="btn btn-info" style="height: 100px; width: 100px; border-radius: 50%;">y</button>
+        <button type="button" class="btn btn-info" style="height: 100px; width: 100px; border-radius: 50%;">z</button>
+    </div>
+    <div>
+        <button class="btn btn-outline-primary m-2">Visit Site</button>
+    </div>
+    <div class="d-flex flex-row">
+        {% for site in site_list %}
+        
+        <div>
+        <a class="" href="{% url 'website-detail' website.pk %}">{{ site.title }}</a>
+        <p>{{ site.author }}</p>
+        <p>{{ site.description }}</p>
+        </div>
+
+        {% endfor %}
+    </div>
+    <div id="post1">
+        <form class="form-horizontal form_middle" enctype='multipart/form-data' method="POST">
+            {% csrf_token %}
+
+            {% bootstrap_form form %}
+            <div class="form-group">
+                <input id="post2" type="submit" class="btn btn-primary btn-sm" value="Submit">
+            </div> 
+        </form>
+    </div>
+</div>
+
+{% endblock %}
