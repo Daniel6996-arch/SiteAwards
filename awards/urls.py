@@ -7,6 +7,7 @@ from .views import WebsiteListView, ProfileView, ProfileEditView, WebsiteDetailV
 urlpatterns = [
     url('^$', views.index, name  = 'index'),
     url('site_of_day/', WebsiteListView.as_view(), name='site_of_day'),
+    url(r'^ajax/newsletter/$', views.newsletter, name='newsletter'),
     url('^profile/(?P<pk>\d+)/$', ProfileView.as_view(), name = 'profile'),
     url('^profile/edit/(?P<pk>\d+)/$', ProfileEditView.as_view(), name = 'profile-edit'),
     url('^post/(?P<pk>\d+)/$', WebsiteDetailView.as_view(), name = 'website-detail'),

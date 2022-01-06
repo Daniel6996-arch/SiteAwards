@@ -22,6 +22,7 @@ class UserProfile(models.Model):
     profile_pic = CloudinaryField('image')
     followers = models.ManyToManyField(User, blank = True, related_name = 'followers')
 
+
     @classmethod
     def search_user(cls,search_term):
         users = cls.objects.filter(user__username = search_term)

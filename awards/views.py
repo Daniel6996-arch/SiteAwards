@@ -10,6 +10,18 @@ from django.views.generic.edit import UpdateView, DeleteView
 def index(request):
     return render(request, 'index.html') 
 
+def newsletter(request):
+    author = request.POST.get('author')
+    title = request.POST.get('title')
+    description = request.POST.get('description')
+    country = request.POST.get('country')
+    landing_page = request.POST.get('landing_page')
+    uploaded_on = request.POST.get('uploaded_on')
+
+    data = {'success': 'You have been successfully added to mailing list'}
+    return JsonResponse(data)
+ 
+
 
 class WebsiteListView(View):
     def get(self, request):
