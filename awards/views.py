@@ -4,7 +4,9 @@ from .models import Website, UserProfile, Comment
 from .forms import SiteForm, CommentForm
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.views.generic.edit import UpdateView, DeleteView
-
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import UserSerializer
 
 # Create your views here.
 def index(request):
@@ -132,3 +134,9 @@ def search(request):
 
     else:
         return render(request, 'search.html', {"message":message})     
+
+class UserList(APIView):
+    def get(self, request, format=None):
+        all_users = UserProfile.objects.all()
+        serializers = UserSerializer(all_users, many=True)
+        return Response(serializers.data)   
