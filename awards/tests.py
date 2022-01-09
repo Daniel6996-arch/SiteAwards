@@ -19,10 +19,20 @@ class WebsiteTestClass(TestCase):  # Website class test
         )
     def test_instance(self):
         self.assertTrue(isinstance(self.website, Website))
-    #def test_save_method(self):
-    #    self.website.save_website()
-    #    websites = Website.objects.all()
-    #    self.assertTrue(len(websites) > 0)
+
+    def test_save_method(self):
+        self.website.save_site()
+        websites = Website.objects.all()
+        self.assertTrue(len(websites) > 0)
+
+    def test_delete_method(self):
+        self.website.save_site()
+        self.website.delete_site()
+        websites = Website.objects.all()
+        self.assertTrue(len(websites) == 0)    
+        
+
+
 class ProfileTestClass(TestCase):
     def setUp(self):
         
@@ -39,3 +49,15 @@ class ProfileTestClass(TestCase):
         )
     def test_instance(self):
         self.assertTrue(isinstance(self.profile, UserProfile))
+
+    def test_save_method(self):
+        self.profile.save_profile()
+        users = User.objects.all()
+        self.assertTrue(len(users) > 0)
+
+    def test_delete_method(self):
+        self.profile.save_profile()
+        self.profile.delete_profile()
+        users = User.objects.all()
+        self.assertTrue(len(users) > 0)        
+

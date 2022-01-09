@@ -15,6 +15,15 @@ class Website(models.Model):
     landing_page = CloudinaryField('Landing page image')
     uploaded_on = models.DateTimeField(auto_now_add=True)
 
+    def save_site(self):
+        self.save() 
+
+    def delete_site(self):
+        self.delete()
+
+    def _str_(self):
+        return self.user.username    
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, primary_key = True, verbose_name = 'user', related_name = 'profile', on_delete = models.CASCADE)
     full_name = models.CharField(max_length=30)
@@ -22,6 +31,11 @@ class UserProfile(models.Model):
     profile_pic = CloudinaryField('image')
     followers = models.ManyToManyField(User, blank = True, related_name = 'followers')
 
+    def save_profile(self):
+        self.save() 
+
+    def delete_profile(self):
+        self.delete()    
 
     @classmethod
     def search_user(cls,search_term):
