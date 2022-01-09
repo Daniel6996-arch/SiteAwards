@@ -18,12 +18,14 @@ from django.urls import path, include
 from awards import views
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('awards.urls')),
     path('accounts/', include('registration.backends.simple.urls')),
     path('^logout/$', views.WebsiteListView.as_view(), {"next_page": '/'}),
+    path(r'^api-token-auth/', obtain_auth_token),
 ]
 
 if settings.DEBUG:

@@ -6,7 +6,9 @@ from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.views.generic.edit import UpdateView, DeleteView
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializer import UserSerializer
+from .serializer import UserSerializer, WebsiteSerializer
+from .permissions import IsAdminOrReadOnly
+
 
 # Create your views here.
 def index(request):
@@ -137,6 +139,14 @@ def search(request):
 
 class UserList(APIView):
     def get(self, request, format=None):
+        permission_classes = (IsAdminOrReadOnly,)
         all_users = UserProfile.objects.all()
         serializers = UserSerializer(all_users, many=True)
-        return Response(serializers.data)   
+        return Response(serializers.data) 
+
+class SiteList(APIView):
+    def get(self, request, format=None):
+        permission_classes = (IsAdminOrReadOnly,)
+        all_sites = Website.objects.all()
+        serializers = WebsiteSerializer(all_sites, many=True)
+        return Response(serializers.data)

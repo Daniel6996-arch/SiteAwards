@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls import url
 from django.urls import path
 from . import views
-from .views import WebsiteListView, ProfileView, ProfileEditView, WebsiteDetailView
+from .views import WebsiteListView, ProfileView, ProfileEditView, WebsiteDetailView, UserList, SiteList
 
 urlpatterns = [
     url('^$', views.index, name  = 'index'),
@@ -12,5 +12,6 @@ urlpatterns = [
     url('^profile/edit/(?P<pk>\d+)/$', ProfileEditView.as_view(), name = 'profile-edit'),
     url('^post/(?P<pk>\d+)/$', WebsiteDetailView.as_view(), name = 'website-detail'),
     url('^search/',views.search,name='search'),
-     url(r'^api/users/$', views.UserList.as_view()),
+    url(r'^api/users/$', views.UserList.as_view()),
+    url(r'^api/projects/$', views.SiteList.as_view()),
 ]    
