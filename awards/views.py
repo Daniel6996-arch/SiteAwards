@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import UserSerializer, WebsiteSerializer
 from .permissions import IsAdminOrReadOnly
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
@@ -150,3 +151,41 @@ class SiteList(APIView):
         all_sites = Website.objects.all()
         serializers = WebsiteSerializer(all_sites, many=True)
         return Response(serializers.data)
+
+class Usability(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        site = Website.objects.get(pk=pk)        
+
+        is_usability = False
+
+        for usability in site.usability.all():
+            if usability == request.user:
+                is_usability = True
+                break
+
+        if not is_usability:
+            site.usability.add(request.user)
+        if is_usability:
+            site.usability.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+
+class Design(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        site = Website.objects.get(pk=pk)        
+
+        is_design = False
+
+        for design in site.design.all():
+            if design == request.user:
+                is_design = True
+                break
+
+        if not is_design:
+            site.design.add(request.user)
+        if is_design:
+            site.design.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)        

@@ -12,11 +12,14 @@ class Website(models.Model):
     title = models.CharField(max_length = 120)
     description = models.TextField()
     country = models.CharField(max_length = 120)
-    landing_page = CloudinaryField('Landing page image')
+    landing_page = CloudinaryField('Landing page image', default = 'PAGE PIC')
     uploaded_on = models.DateTimeField(auto_now_add=True)
+    design = models.ManyToManyField(User, blank=True, related_name='design')
+    usability = models.ManyToManyField(User, blank=True, related_name='usability')
+    content = models.ManyToManyField(User, blank=True, related_name='content')
 
-    def save_site(self):
-        self.save() 
+    #def save_site(self):
+    #    self.save() 
 
     def delete_site(self):
         self.delete()
@@ -28,7 +31,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, primary_key = True, verbose_name = 'user', related_name = 'profile', on_delete = models.CASCADE)
     full_name = models.CharField(max_length=30)
     bio = models.TextField(blank=True, null=True)
-    profile_pic = CloudinaryField('image')
+    profile_pic = CloudinaryField('image', default = 'PROFILE PIC')
     followers = models.ManyToManyField(User, blank = True, related_name = 'followers')
 
     def save_profile(self):

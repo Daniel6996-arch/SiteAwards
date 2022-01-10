@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls import url
 from django.urls import path
 from . import views
-from .views import WebsiteListView, ProfileView, ProfileEditView, WebsiteDetailView, UserList, SiteList
+from .views import WebsiteListView, ProfileView, ProfileEditView, WebsiteDetailView, UserList, SiteList, Usability, Design
 
 urlpatterns = [
     url('^$', views.index, name  = 'index'),
@@ -14,4 +14,8 @@ urlpatterns = [
     url('^search/',views.search,name='search'),
     url(r'^api/users/$', views.UserList.as_view()),
     url(r'^api/projects/$', views.SiteList.as_view()),
+    url('^site/usability/(?P<pk>\d+)/$', Usability.as_view(), name = 'usability'),
+    url('^site/design/(?P<pk>\d+)/$', Design.as_view(), name = 'design'),
+    #path('^site/usability/<int:pk>/', views.Usability.as_view(), name='usability'),
+    #path('^post/<int:pk>/dislike', Dislike.as_view(), name = 'dislike'),
 ]    

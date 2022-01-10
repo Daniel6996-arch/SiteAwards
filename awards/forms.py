@@ -6,7 +6,7 @@ class SiteForm(forms.ModelForm):
 
     class Meta:
         model = Website
-        exclude = ['author', 'uploaded_on']
+        exclude = ['author', 'uploaded_on', 'design', 'usability', 'content']
 
 class CommentForm(forms.ModelForm):
     comment = forms.CharField(

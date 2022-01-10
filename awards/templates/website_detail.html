@@ -9,7 +9,35 @@
         <p class="fs-5"><span class="fst-italic text-warning fs-4">Name of Site: </span>{{ website.title }}</p>
         <p class="fs-5"><span class="fst-italic text-warning fs-4">Description: </span> {{ website.description }}</p>
         <p class="fs-5"><span class="fst-italic text-warning fs-4">Created by </span><a class="text-primary" style="text-decoration: none;" href="">@{{ website.author }}</a><span class="fst-italic text-warning">on</span> {{ website.uploaded_on }}</p>
+        <div>
+            <p>ratings and review</p>
+            <div>
+                <div class="d-flex justify-content-center">
+                    <div class="m-2">
+                        <button type="button" class="btn btn-info m-2" style="height: 100px; width: 100px; border-radius: 50%;">x</button>
+                        <p>Design</p>
+                    </div>
+                    <div class="m-2">
+                        <button type="button" class="btn btn-info m-2" style="height: 100px; width: 100px; border-radius: 50%;">{{ website.usability.all.count }}/10</button>
+                        <p>Usability</p>
+                    </div>
+                    <div class="m-2">
+                        <button type="button" class="btn btn-info m-2" style="height: 100px; width: 100px; border-radius: 50%;">z</button>
+                        <p>Content</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     
+    </div>
+
+    <div class="d-flex flex-row">
+        <form method="POST" action="{% url 'usability' website.pk %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <button style="background-color: transparent; border: none;" type="submit">Usability vote<i class="fas fa-thumbs-up"></i><span class="btn btn-light text-primary">{{ site.usability.all.count }}</span></button>
+        </form>
+
     </div>
 
 
