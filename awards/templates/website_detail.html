@@ -42,6 +42,11 @@
             <input type="hidden" name="next" value="{{ request.path }}">
             <button style="background-color: transparent; border: none;" type="submit">Design vote<i class="fas fa-thumbs-up"></i><span class="btn btn-light text-primary">{{ site.usability.all.count }}</span></button>
         </form>
+        <form method="POST" action="{% url 'content' website.pk %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <button style="background-color: transparent; border: none;" type="submit">Content vote<i class="fas fa-thumbs-up"></i><span class="btn btn-light text-primary">{{ site.usability.all.count }}</span></button>
+        </form>
 
     </div>
 

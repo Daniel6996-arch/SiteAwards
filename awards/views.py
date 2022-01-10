@@ -188,4 +188,23 @@ class Design(LoginRequiredMixin, View):
             site.design.remove(request.user)
 
         next = request.POST.get('next', '/')
-        return HttpResponseRedirect(next)        
+        return HttpResponseRedirect(next)    
+
+class Content(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        site = Website.objects.get(pk=pk)        
+
+        is_content = False
+
+        for content in site.content.all():
+            if content == request.user:
+                is_content = True
+                break
+
+        if not is_content:
+            site.content.add(request.user)
+        if is_content:
+            site.content.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)            
