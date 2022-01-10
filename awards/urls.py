@@ -16,6 +16,5 @@ urlpatterns = [
     url(r'^api/projects/$', views.SiteList.as_view()),
     url('^site/usability/(?P<pk>\d+)/$', Usability.as_view(), name = 'usability'),
     url('^site/design/(?P<pk>\d+)/$', Design.as_view(), name = 'design'),
-    #path('^site/usability/<int:pk>/', views.Usability.as_view(), name='usability'),
-    #path('^post/<int:pk>/dislike', Dislike.as_view(), name = 'dislike'),
+    url('^site/content/(?P<pk>\d+)/$', Content.as_view(), name = 'content'),
 ]    
