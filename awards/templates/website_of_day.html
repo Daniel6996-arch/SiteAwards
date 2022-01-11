@@ -4,43 +4,28 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container con">
+    <div class="d-flex flex-row">
+        <p class="top"><span class="latest">Site of the day </span><span class="text-info uploaded">{{ site_of_day.uploaded_on }}</span></p>
+        <span class="pr"><a class="btn btn-outline-primary m-2" href="{% url 'website-detail' site_of_day.pk %}">Visit Site</a></span>
+    </div>
     <a class="" href=""><img id="sizemore" src="{{ site_of_day.landing_page.url }}"></a>
     <div class="pb-5">
         <div class="">
             <div>
-                <p><span class="latest">Site of the day </span><span class="text-info uploaded">{{ site_of_day.uploaded_on }}</span></p>
-                <div class="text-center centr">
+                <div class="text-center centered">
                     <h1>{{ site_of_day.title }}</h1>
                     <p class="fw-bold"><span class="text-info">by </span>{{ site_of_day.author }}<span class="text-info"> from </span>{{ site_of_day.country }}</p>
                     <p>{{ site_of_day.description }}</p>
                 </div>
             </div>
-                <h3 class="text-center p-2">Rating and Review</h3>
-                <div class="d-flex justify-content-center">
-                    <div class="m-2">
-                        <button type="button" class="btn btn-info m-2" style="height: 100px; width: 100px; border-radius: 50%;">x</button>
-                        <p>Design</p>
-                    </div>
-                    <div class="m-2">
-                        <button type="button" class="btn btn-info m-2" style="height: 100px; width: 100px; border-radius: 50%;">y</button>
-                        <p>Usability</p>
-                    </div>
-                    <div class="m-2">
-                        <button type="button" class="btn btn-info m-2" style="height: 100px; width: 100px; border-radius: 50%;">z</button>
-                        <p>Content</p>
-                    </div>
-                </div>
-        </div>
-        <div>
-            <button class="btn btn-outline-primary m-2">Visit Site</button>
         </div>
     </div>
     <div class="d-flex flex-wrap">
         {% for site in site_list %}
-        <div class="m-2">
+        <div class="card-size">
             <div>
-                <a class="" href="{% url 'website-detail' site.pk %}"><img id="size" src="{{ site.landing_page.url }}"></a>
+                <a class="" href="{% url 'website-detail' site.pk %}"><img id="size" style="width: 26.5vw;" src="{{ site.landing_page.url }}"></a>
             </div>    
             <div>
                 <a class="" href="{% url 'website-detail' site.pk %}">{{ site.title }}</a>
@@ -52,13 +37,13 @@
         {% endfor %}
     </div>
     <div id="post1">
-        <form class="form-horizontal form_middle" enctype='multipart/form-data' method="POST">
+        <form class="form-horizontal form_middle" enctype='multipart/form-data' method="POST"  action=" {% url 'site_of_day' %}">
             {% csrf_token %}
 
             {% bootstrap_form form %}
             <div class="form-group">
                 <input id="post2" type="submit" class="btn btn-primary btn-sm" value="Submit">
-            </div> 
+            </div>
         </form>
     </div>
 </div>

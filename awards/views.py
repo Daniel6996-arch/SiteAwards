@@ -9,32 +9,24 @@ from rest_framework.views import APIView
 from .serializer import UserSerializer, WebsiteSerializer
 from .permissions import IsAdminOrReadOnly
 from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html') 
-
-def newsletter(request):
-    author = request.POST.get('author')
-    title = request.POST.get('title')
-    description = request.POST.get('description')
-    country = request.POST.get('country')
-    landing_page = request.POST.get('landing_page')
-    uploaded_on = request.POST.get('uploaded_on')
-
-    data = {'success': 'You have been successfully added to mailing list'}
-    return JsonResponse(data)
  
 
 
 class WebsiteListView(View):
     def get(self, request):
         websites = Website.objects.all().order_by('-uploaded_on')
+        site_of_day = Website.objects.all().order_by('-uploaded_on').first()
         form = SiteForm()
 
         context = {
             'site_list':websites,
+            'site_of_day':site_of_day,
             'form':form,
         }
 
@@ -76,7 +68,7 @@ class ProfileView(View):
 
         return render(request, 'profile.html', context)     
 
-class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class ProfileEditView(UpdateView):
     model = UserProfile
     fields = ['full_name', 'bio', 'profile_pic']
     template_name = 'profile_edit.html'

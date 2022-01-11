@@ -8,9 +8,17 @@
     font-size: 1.5rem;
 }
 #size{
-    width: 30vw;
-    height: 50vh;
+    width: 25vw;
+    height: 40vh;
 }
 #sizemore{
     width: 98vw;
+    height: 80vh;
+}
+.pr{
+    margin-left: 30vw;
+}
+.card-size{
+    width: 25vw;
+    margin-left: 2vw;
 }

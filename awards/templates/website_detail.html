@@ -10,7 +10,7 @@
         <p class="fs-5"><span class="fst-italic text-warning fs-4">Description: </span> {{ website.description }}</p>
         <p class="fs-5"><span class="fst-italic text-warning fs-4">Created by </span><a class="text-primary" style="text-decoration: none;" href="">@{{ website.author }}</a><span class="fst-italic text-warning">on</span> {{ website.uploaded_on }}</p>
         <div>
-            <p>ratings and review</p>
+            <p class="text-center">Ratings and Review</p>
             <div>
                 <div class="d-flex justify-content-center">
                     <div class="m-2">
@@ -26,28 +26,27 @@
                         <p>Content</p>
                     </div>
                 </div>
+                <div class="d-flex flex-row">
+                    <form method="POST" action="{% url 'usability' website.pk %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button style="background-color: transparent; border: none;" class="btn btn-outline-info " type="submit">Design vote</button>
+                    </form>
+                    <form method="POST" action="{% url 'design' website.pk %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button style="background-color: transparent; border: none;" class="btn btn-outline-info " type="submit">Usability vote</button>
+                    </form>
+                    <form method="POST" action="{% url 'content' website.pk %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button style="background-color: transparent; border: none;" class="btn btn-outline-info " type="submit">Content vote</button>
+                    </form>
+            
+                </div>
             </div>
         </div>
     
-    </div>
-
-    <div class="d-flex flex-row">
-        <form method="POST" action="{% url 'usability' website.pk %}">
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ request.path }}">
-            <button style="background-color: transparent; border: none;" type="submit">Usability vote<i class="fas fa-thumbs-up"></i><span class="btn btn-light text-primary">{{ site.usability.all.count }}</span></button>
-        </form>
-        <form method="POST" action="{% url 'design' website.pk %}">
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ request.path }}">
-            <button style="background-color: transparent; border: none;" type="submit">Design vote<i class="fas fa-thumbs-up"></i><span class="btn btn-light text-primary">{{ site.usability.all.count }}</span></button>
-        </form>
-        <form method="POST" action="{% url 'content' website.pk %}">
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ request.path }}">
-            <button style="background-color: transparent; border: none;" type="submit">Content vote<i class="fas fa-thumbs-up"></i><span class="btn btn-light text-primary">{{ site.usability.all.count }}</span></button>
-        </form>
-
     </div>
 
 

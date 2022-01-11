@@ -14,9 +14,9 @@ class Website(models.Model):
     country = models.CharField(max_length = 120)
     landing_page = CloudinaryField('Landing page image', default = 'PAGE PIC')
     uploaded_on = models.DateTimeField(auto_now_add=True)
-    design = models.ManyToManyField(User, blank=True, related_name='design')
-    usability = models.ManyToManyField(User, blank=True, related_name='usability')
-    content = models.ManyToManyField(User, blank=True, related_name='content')
+    design = models.ManyToManyField(User, blank=True, null=True, related_name='design')
+    usability = models.ManyToManyField(User, blank=True, null=True, related_name='usability')
+    content = models.ManyToManyField(User, blank=True, null=True, related_name='content')
 
     #def save_site(self):
     #    self.save() 
